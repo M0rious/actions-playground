@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Read configuration.yaml
+        id: read_configuration
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '.' configuration.yml
+      - name: Reuse a variable obtained in another step
+        run: echo ${{ steps.read_configuration.outputs.result }}

@@ -14,6 +14,6 @@ jobs:
         id: read_configuration
         uses: mikefarah/yq@master
         with:
-          cmd: yq '.' configuration.yml
+          cmd: yq '.' configuration.yaml
       - name: Reuse a variable obtained in another step
         run: echo ${{ steps.read_configuration.outputs.result }}

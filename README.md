@@ -1,1 +1,1 @@
-act --container-architecture linux/amd64 -W .github/workflows/deployment-manager.yml workflow_dispatch  -e demoinput.json
+act --container-architecture linux/amd64 -W .github/workflows/deployment-manager.yml workflow_dispatch  -e demoinput.json --artifact-server-path /tmp/artifacts

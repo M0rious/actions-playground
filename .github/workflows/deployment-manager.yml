@@ -51,7 +51,7 @@ jobs:
 #            configuration.yaml
 #          key: deployment-config-${{ hashFiles('selected-deployment.yaml') }}
       - name: Upload used deployment-configuration
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: selected-deployment
           path: selected-deployment.yaml
@@ -77,13 +77,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: selected-deployment
-          path: selected-deployment.yaml
+#          path: selected-deployment.yaml
 
       - name: download used repository-configuration
         uses: actions/download-artifact@v3
         with:
           name: repository-configuration
-          path: configuration.yaml
+#          path: configuration.yaml
 
       - name: Read configuration.yaml
         id: read_repo_configuration

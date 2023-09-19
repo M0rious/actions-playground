@@ -9,6 +9,7 @@ on:
       stage:
         description: 'Deployment Stage'
         required: true
+        type: choice
         options:
           - 'TRY'
           - 'TEST'
@@ -19,6 +20,7 @@ on:
         description: 'Hub (optional)'
         required: false
         default: ''
+        type: choice
         options:
           - 'eu-central-1'
           - 'us-east-1'

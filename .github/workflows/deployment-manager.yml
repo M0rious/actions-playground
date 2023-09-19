@@ -105,5 +105,7 @@ jobs:
           repository: ${{ steps.read_repo_configuration.outputs.result }}
           path: 'deployment-pipeline'
 
+      - run: ls -R
+
       - name: Start deployment pipeline for ${{ matrix.package }}
         uses: ./deployment-pipeline/.github/workflows/blank.yaml

@@ -1,5 +1,5 @@
 softwareA:
-  repository: https://www.softwareA.com
+  repository: M0rious/softwareA-pipeline
 
 softwareB:
-  repository: https://www.softwareB.com
+  repository: M0rious/softwareB-pipeline

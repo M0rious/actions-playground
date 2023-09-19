@@ -99,6 +99,11 @@ jobs:
         with:
           cmd: yq eval '.${{ matrix.package }}.version' selected-deployment.yaml
 
-      - uses: actions/checkout@v4
+      - name: Checkout deployment pipeline for ${{ matrix.package }}
+        uses: actions/checkout@v4
         with:
           repository: ${{ steps.read_repo_configuration.outputs.result }}
+          path: 'deployment-pipeline'
+
+      - name: Start deployment pipeline for ${{ matrix.package }}
+        uses: ./deployment-pipeline/blank.yaml

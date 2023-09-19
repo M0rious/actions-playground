@@ -66,7 +66,7 @@ jobs:
     outputs:
       matrix: ${{ steps.read_configuration.outputs.result }}
 
-  deploy:
+  prepare-deployments:
     needs: read-config
 
     runs-on: ubuntu-latest
@@ -105,7 +105,5 @@ jobs:
           repository: ${{ steps.read_repo_configuration.outputs.result }}
           path: 'deployment-pipeline'
 
-      - run: ls -R
-
       - name: Start deployment pipeline for ${{ matrix.package }}
-        uses: ./deployment-pipeline/callable/blank.yaml
+        uses: ./deployment-pipeline/callable

@@ -106,4 +106,4 @@ jobs:
           path: 'deployment-pipeline'
 
       - name: Start deployment pipeline for ${{ matrix.package }}
-        uses: ./deployment-pipeline/blank.yaml
+        uses: ./deployment-pipeline/.github/workflows/blank.yaml

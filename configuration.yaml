@@ -1,7 +1,5 @@
 softwareA:
   repository: https://www.softwareA.com
-  version: 1.0
-  
+
 softwareB:
   repository: https://www.softwareB.com
-  version: 2.0

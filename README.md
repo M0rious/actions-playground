@@ -1,1 +1,1 @@
-act --container-architecture linux/amd64 -W .github/workflows/matrix.yml workflow_dispatch
+act --container-architecture linux/amd64 -W .github/workflows/deployment-manager.yml workflow_dispatch  -e demoinput.json

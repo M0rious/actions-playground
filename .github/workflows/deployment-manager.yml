@@ -1,0 +1,98 @@
+name: deployment-manager
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name of the application'
+        required: true
+      stage:
+        description: 'Deployment Stage'
+        required: true
+        options:
+          - 'TRY'
+          - 'TEST'
+          - 'INT'
+          - 'E2E'
+          - 'PROD'
+      hub:
+        description: 'Hub (optional)'
+        required: false
+        default: ''
+        options:
+          - 'eu-central-1'
+          - 'us-east-1'
+          - 'cn-north-1'
+      scope:
+        description: 'Deployment Scope (optional)'
+        required: false
+        default: ''
+
+jobs:
+  read-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Select configuration ${{ github.event.inputs.name }}.yaml
+        run: mv ${{ github.event.inputs.name }}.yaml selected-deployment.yaml
+
+      - name: Read ${{ github.event.inputs.name }}.yaml
+        id: read_configuration
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval 'keys' selected-deployment.yaml -j
+
+#      - name: Cache config
+#        uses: actions/cache@v3
+#        with:
+#          path: |
+#            selected-deployment.yaml
+#            configuration.yaml
+#          key: deployment-config-${{ hashFiles('selected-deployment.yaml') }}
+      - name: Upload used deployment-configuration
+        uses: actions/upload-artifact@v2
+        with:
+          name: selected-deployment
+          path: selected-deployment.yaml
+
+      - name: Upload used repository-configuration
+        uses: actions/upload-artifact@v3
+        with:
+          name: repository-configuration
+          path: configuration.yaml
+    outputs:
+      matrix: ${{ steps.read_configuration.outputs.result }}
+
+  deploy:
+    needs: read-config
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.read-config.outputs.matrix) }}
+
+    steps:
+      - name: Download used deployment-configuration
+        uses: actions/download-artifact@v2
+        with:
+          name: selected-deployment
+          path: selected-deployment.yaml
+
+      - name: download used repository-configuration
+        uses: actions/download-artifact@v3
+        with:
+          name: repository-configuration
+          path: configuration.yaml
+
+      - name: Read configuration.yaml
+        id: read_repo_configuration
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval '.${{ matrix.package }}.repository' configuration.yaml
+
+      - name: Read deployment configuration
+        id: read_deployment_configuration
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval '.${{ matrix.package }}.version' selected-deployment.yaml

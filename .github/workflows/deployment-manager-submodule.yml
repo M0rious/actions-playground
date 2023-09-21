@@ -2,33 +2,33 @@ name: deployment-manager-submodule
 
 on:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Name of the application'
-        required: true
-      stage:
-        description: 'Deployment Stage'
-        required: true
-        type: choice
-        options:
-          - 'TRY'
-          - 'TEST'
-          - 'INT'
-          - 'E2E'
-          - 'PROD'
-      hub:
-        description: 'Hub (optional)'
-        required: false
-        default: ''
-        type: choice
-        options:
-          - 'eu-central-1'
-          - 'us-east-1'
-          - 'cn-north-1'
-      scope:
-        description: 'Deployment Scope (optional)'
-        required: false
-        default: ''
+#    inputs:
+#      name:
+#        description: 'Name of the application'
+#        required: true
+#      stage:
+#        description: 'Deployment Stage'
+#        required: true
+#        type: choice
+#        options:
+#          - 'TRY'
+#          - 'TEST'
+#          - 'INT'
+#          - 'E2E'
+#          - 'PROD'
+#      hub:
+#        description: 'Hub (optional)'
+#        required: false
+#        default: ''
+#        type: choice
+#        options:
+#          - 'eu-central-1'
+#          - 'us-east-1'
+#          - 'cn-north-1'
+#      scope:
+#        description: 'Deployment Scope (optional)'
+#        required: false
+#        default: ''
 
 jobs:
 #  read-config:

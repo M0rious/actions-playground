@@ -1,4 +1,4 @@
-name: deployment-manager
+name: deployment-manager-submodule
 
 on:
   workflow_dispatch:

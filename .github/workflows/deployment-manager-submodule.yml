@@ -102,6 +102,6 @@ jobs:
 #        uses: ./deployment-pipeline/callable
 
   softwareA:
-    uses: ./apps/softwareA/.github/workflows/blank.yml
+    uses: './apps/softwareA/.github/workflows/blank.yml'
   softwareB:
-    uses: ./apps/softwareB/.github/workflows/blank.yml
+    uses: './apps/softwareB/.github/workflows/blank.yml'

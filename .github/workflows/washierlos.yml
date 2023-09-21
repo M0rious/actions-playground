@@ -4,6 +4,6 @@ on:
   workflow_dispatch:
 jobs:
   softwareA:
-    uses: './github/workflows/softwareA.yml'
+    uses: './.github/workflows/softwareA.yml'
   softwareB:
-    uses: './github/workflows/softwareB.yml'
+    uses: './.github/workflows/softwareB.yml'

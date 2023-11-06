@@ -1,6 +1,0 @@
-[submodule "apps/softwareA"]
-	path = apps/softwareA
-	url = https://github.com/M0rious/softwareA-pipeline.git
-[submodule "apps/softwareB"]
-	path = apps/softwareB
-	url = https://github.com/M0rious/softwareB-pipeline.git
